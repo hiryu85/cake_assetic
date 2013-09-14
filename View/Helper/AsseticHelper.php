@@ -199,7 +199,7 @@ class AsseticHelper extends AppHelper {
 		}
 
 		$options['target'] = self::normalizeExtension($options['target'], $options['type']);
-		$ac->setTargetPath($options['target']);
+		$ac->setTargetPath(static::$config['stylesPath'] . DS . $options['target']);
 		$am->set(str_replace('.', '', $options['target']), $ac);
 
 		//echo $ac->dump(); exit;
@@ -208,7 +208,7 @@ class AsseticHelper extends AppHelper {
 			$aw->writeManagerAssets($am);
 		}
 
-		return $this->Html->css($options['target'] . ($options['version'] ? '?' . $options['version'] : ''), null, array('inline' => true));
+		return $this->Html->css(static::$config['stylesPath'] . DS . $options['target'] . ($options['version'] ? '?' . $options['version'] : ''), null, array('inline' => true));
 
 	}
 
@@ -281,7 +281,7 @@ class AsseticHelper extends AppHelper {
 
 
 		$options['target'] = self::normalizeExtension($options['target'], $options['type']);
-		$ac->setTargetPath($options['target']);
+		$ac->setTargetPath(static::$config['scriptsPath'] . DS . $options['target']);
 		$am->set(str_replace('.', '', $options['target']), $ac);
 
 		//echo $ac->dump(); exit;
@@ -290,7 +290,7 @@ class AsseticHelper extends AppHelper {
 			$aw->writeManagerAssets($am);
 		}
 
-		return $this->Html->script($options['target'] . ($options['version'] ? '?' . $options['version'] : ''), array('inline' => true));
+		return $this->Html->script(static::$config['scriptsPath'] . DS . $options['target'] . ($options['version'] ? '?' . $options['version'] : ''), array('inline' => true));
 
 	}
 
